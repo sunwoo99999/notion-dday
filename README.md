@@ -28,7 +28,7 @@ https://sunwoo99999.github.io/notion-dday/?date=2025-12-25&week=false
 
 ---
 
-## ❓ Troubleshooting
+## Troubleshooting
 
 **Widget shows "Click to view content" or a grey box?**
 This happens when Notion caches an old version of the link.
@@ -47,7 +47,7 @@ This happens when Notion caches an old version of the link.
 
 ## Preview
 
-(Add your screenshot here)
+<img width="143" height="89" alt="Screenshot 2026-01-20 213138" src="https://github.com/user-attachments/assets/8d749314-2b55-49b2-90f7-b50a801935a0" />
 
 ## License
 
@@ -56,3 +56,4 @@ MIT License
 ## Author
 
 Seonwoo Kang
+
