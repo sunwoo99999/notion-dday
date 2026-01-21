@@ -12,18 +12,26 @@ Designed to work as an embed (`/embed`) without database headers or padding.
 3. Paste the URL and click **Embed link**.
 4. **Resize** to remove whitespace.
 
-### 1. Default (July 20, 2026)
+### 1. Default
 
 https://sunwoo99999.github.io/notion-dday/
 
 ### 2. Custom Date
 
-Add `?date=YYYY-MM-DD`.
 https://sunwoo99999.github.io/notion-dday/?date=2025-12-25
 
-### 3. Hide Week Count
+### 3. Change Colors (New!)
 
-Add `&week=false`.
+Add `&dayColor=COLOR` or `&weekColor=COLOR`.
+
+- **Colors:** `gray`, `brown`, `orange`, `yellow`, `green`, `blue`, `purple`, `pink`, `red`
+
+**Example (Pink Day + Blue Week):**
+https://sunwoo99999.github.io/notion-dday/?date=2025-12-25&dayColor=pink&weekColor=blue
+
+### 4. Hide Elements
+
+Add `&week=false` or `&day=false`.
 https://sunwoo99999.github.io/notion-dday/?date=2025-12-25&week=false
 
 ---
@@ -31,7 +39,6 @@ https://sunwoo99999.github.io/notion-dday/?date=2025-12-25&week=false
 ## Troubleshooting
 
 **Widget shows "Click to view content" or a grey box?**
-This happens when Notion caches an old version of the link.
 
 1. Select the embed block in Notion.
 2. Press **`Ctrl` + `R`** (Windows) or **`Cmd` + `R`** (Mac) to reload Notion.
@@ -47,7 +54,7 @@ This happens when Notion caches an old version of the link.
 
 ## Preview
 
-<img width="143" height="89" alt="Screenshot 2026-01-20 213138" src="https://github.com/user-attachments/assets/8d749314-2b55-49b2-90f7-b50a801935a0" />
+(Add your screenshot here)
 
 ## License
 
@@ -56,4 +63,3 @@ MIT License
 ## Author
 
 Seonwoo Kang
-

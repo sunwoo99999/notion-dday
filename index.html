@@ -8,7 +8,7 @@
         /* Global Styles */
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: transparent; /* Transparent for Notion */
+            background-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
@@ -19,11 +19,16 @@
         .badge {
             padding: 4px 8px; border-radius: 4px; font-size: 14px; font-weight: 500; line-height: 1.2; white-space: nowrap;
         }
-        /* Notion Colors */
-        .green { color: #448361; background-color: #DDEDEA; }
+        /* Notion Color Palette */
+        .gray   { color: #9B9A97; background-color: #EBECED; }
+        .brown  { color: #976D57; background-color: #F4EEEE; }
+        .orange { color: #D9730D; background-color: #FAEBDD; }
+        .yellow { color: #DFAB01; background-color: #FBF3DB; }
+        .green  { color: #448361; background-color: #DDEDEA; }
+        .blue   { color: #2383E2; background-color: #E0F1FF; }
         .purple { color: #6940A5; background-color: #EAE4F2; }
-        .red { color: #D44C47; background-color: #FBE4E4; }
-        .gray { color: #9B9A97; background-color: #EBECED; }
+        .pink   { color: #C14C8A; background-color: #F4DFEB; }
+        .red    { color: #D44C47; background-color: #FBE4E4; }
     </style>
 </head>
 <body>
@@ -34,73 +39,95 @@
 
     <script>
         // ====================================================
-        // ⚙️ CONFIGURATION
+        // CONFIGURATION
         // ====================================================
-        
-        // 1. Get parameters from URL (e.g., ?date=2025-12-25&week=false)
         const urlParams = new URLSearchParams(window.location.search);
         
-        // 2. Set Target Date (Default: 2026-07-20)
+        // 1. Target Date
         const targetDateStr = urlParams.get('date') || "2026-07-20"; 
         
-        // 3. Show/Hide Week Info (Default: true)
+        // 2. Display Toggles
+        const showDays = urlParams.get('day') !== 'false'; 
         const showWeeks = urlParams.get('week') !== 'false'; 
+
+        // 3. Color Overrides (Optional)
+        // Options: gray, brown, orange, yellow, green, blue, purple, pink, red
+        const dayColorOverride = urlParams.get('dayColor');
+        const weekColorOverride = urlParams.get('weekColor');
 
         function updateDday() {
             const today = new Date();
             const target = new Date(targetDateStr);
             
-            // Error Handling: Invalid Date
             if (isNaN(target.getTime())) {
                 document.getElementById("day-display").textContent = "Invalid Date";
                 document.getElementById("day-display").className = "badge red";
                 return;
             }
 
-            // Reset time to 00:00:00 for accurate day calculation
             today.setHours(0,0,0,0);
             target.setHours(0,0,0,0);
 
-            // Calculate Difference
             const diffTime = target - today;
             const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             
             const dayEl = document.getElementById("day-display");
             const weekEl = document.getElementById("week-display");
 
-            // Logic: Day Display
-            if (days > 0) {
-                dayEl.textContent = `${days} days left`;
-                dayEl.className = "badge green"; 
-            } else if (days === 0) {
-                dayEl.textContent = "D-Day!";
-                dayEl.className = "badge red";   
+            // --- Day Logic ---
+            if (showDays) {
+                dayEl.style.display = "block";
+                let dText = "";
+                let dClass = "green"; // Default color
+
+                if (days > 0) {
+                    dText = `${days} days left`;
+                    dClass = "green";
+                } else if (days === 0) {
+                    dText = " D-Day!";
+                    dClass = "red";
+                } else {
+                    dText = `${Math.abs(days)} days passed`;
+                    dClass = "gray";
+                }
+
+                // Apply Override if exists
+                if (dayColorOverride) dClass = dayColorOverride;
+
+                dayEl.textContent = dText;
+                dayEl.className = `badge ${dClass}`;
             } else {
-                dayEl.textContent = `${Math.abs(days)} days passed`;
-                dayEl.className = "badge gray";  
+                dayEl.style.display = "none";
             }
 
-            // Logic: Week Display
+            // --- Week Logic ---
             if (showWeeks) {
                 const weeks = Math.floor(days / 7);
                 weekEl.style.display = "block";
+                let wText = "";
+                let wClass = "purple"; // Default color
 
                 if (weeks < 0) {
-                    weekEl.textContent = `${Math.abs(weeks)} weeks passed`;
-                    weekEl.className = "badge red"; 
+                    wText = `${Math.abs(weeks)} weeks passed`;
+                    wClass = "gray"; 
                 } else if (weeks === 0) {
-                    weekEl.textContent = "D-Week!";
-                    weekEl.className = "badge purple";
+                    wText = "D-Week!";
+                    wClass = "purple";
                 } else {
-                    weekEl.textContent = `${weeks} weeks left`;
-                    weekEl.className = "badge purple"; 
+                    wText = `${weeks} weeks left`;
+                    wClass = "purple"; 
                 }
+
+                // Apply Override if exists
+                if (weekColorOverride) wClass = weekColorOverride;
+
+                weekEl.textContent = wText;
+                weekEl.className = `badge ${wClass}`;
             } else {
                 weekEl.style.display = "none";
             }
         }
         
-        // Initialize Widget
         updateDday();
     </script>
 </body>
