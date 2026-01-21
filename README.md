@@ -20,7 +20,7 @@ https://sunwoo99999.github.io/notion-dday/
 
 https://sunwoo99999.github.io/notion-dday/?date=2025-12-25
 
-### 3. Change Colors (New!)
+### 3. Change Colors (Option)
 
 Add `&dayColor=COLOR` or `&weekColor=COLOR`.
 
@@ -64,4 +64,5 @@ MIT License
 ## Author
 
 Seonwoo Kang
+
 
