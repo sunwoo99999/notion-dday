@@ -54,7 +54,8 @@ https://sunwoo99999.github.io/notion-dday/?date=2025-12-25&week=false
 
 ## Preview
 
-(Add your screenshot here)
+<img width="143" height="89" alt="Screenshot 2026-01-20 213138" src="https://github.com/user-attachments/assets/7d5163cf-f873-4049-accc-1dbdb5c8f020" />
+
 
 ## License
 
@@ -63,3 +64,4 @@ MIT License
 ## Author
 
 Seonwoo Kang
+
